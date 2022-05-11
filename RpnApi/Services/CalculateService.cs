@@ -16,7 +16,7 @@ namespace RpnApi.Services
             var stack = _stackService.Get(id);
 
             if (stack == null) { return null; }
-            if (stack.Count < 2) { return stack; }
+            if (stack.Count < 2) { throw new InvalidOperationException("Invalid input"); }
 
             int x = stack.Pop().Value;
             int y = stack.Pop().Value;

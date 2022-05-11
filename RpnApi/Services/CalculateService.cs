@@ -14,20 +14,15 @@ namespace RpnApi.Services
         public Stack<Entry> Calculate(int id, string operand)
         {
             var stack = _stackService.Get(id);
+
             if (stack == null) { return null; }
             if (stack.Count < 2) { return stack; }
+
             int x = stack.Pop().Value;
             int y = stack.Pop().Value;
             try
             {
-                if (operand == "+") x += y;
-                else if (operand == "-") x -= y;
-                else if (operand == "*") x *= y;
-                else if (operand.Replace("%2F", "/") == "/") x /= y;
-                else throw new Exception();
-
-                stack.Push(new Entry(x));
-                return stack;
+                return Compute(x, y, stack, operand);
             }
             catch (DivideByZeroException e)
             {
@@ -39,6 +34,18 @@ namespace RpnApi.Services
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        private static Stack<Entry> Compute(int x, int y, Stack<Entry> stack, string operand)
+        {
+            if (operand == "+") x += y;
+            else if (operand == "-") x -= y;
+            else if (operand == "*") x *= y;
+            else if (operand.Replace("%2F", "/") == "/") x /= y;
+            else throw new Exception();
+
+            stack.Push(new Entry(x));
+            return stack;
         }
     }
 }

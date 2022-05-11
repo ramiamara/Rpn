@@ -7,7 +7,7 @@ namespace RpnApi.Services
     public class CalculateService : ICalculateService
     {
         private readonly IStackService _stackService;
-        public CalculateService(IStackService stackService, IOperandService operandService)
+        public CalculateService(IStackService stackService)
         {
             _stackService = stackService;
         }

@@ -7,7 +7,7 @@ using RpnApi.Shared;
 namespace RpnApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("rpn")]
     public class RpnController : ControllerBase
     {
         private readonly IStackService _stackService;

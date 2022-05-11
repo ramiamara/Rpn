@@ -32,6 +32,8 @@ namespace RpnApi.Services
             }
             catch (Exception e)
             {
+                stack.Push(new Entry(y));
+                stack.Push(new Entry(x));
                 throw new Exception(e.Message);
             }
         }

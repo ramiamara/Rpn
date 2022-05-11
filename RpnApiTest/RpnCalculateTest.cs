@@ -19,12 +19,7 @@ namespace RpnApiTest
             _ = mockStackService.Setup(x => x.Get())
                 .Returns(new Dictionary<int, Stack<Entry>>());
 
-            var mockOperandService = new Mock<IOperandService>();
-
-            _ = mockOperandService.Setup(x => x.Get())
-                .Returns(operators);
-
-            var sut = new CalculateService(mockStackService.Object, mockOperandService.Object);
+            var sut = new CalculateService(mockStackService.Object);
             // Act
             var result = sut.Calculate(0, GetRandomOperators(operators));
 
@@ -53,12 +48,7 @@ namespace RpnApiTest
             _ = mockStackService.Setup(x => x.Get(0))
                 .Returns(expectedStack);
 
-            var mockOperandService = new Mock<IOperandService>();
-
-            _ = mockOperandService.Setup(x => x.Get())
-                .Returns(operators);
-
-            var sut = new CalculateService(mockStackService.Object, mockOperandService.Object);
+            var sut = new CalculateService(mockStackService.Object);
 
             // Assert
 
@@ -91,12 +81,7 @@ namespace RpnApiTest
             _ = mockStackService.Setup(x => x.Get(0))
                 .Returns(expectedStack);
 
-            var mockOperandService = new Mock<IOperandService>();
-
-            _ = mockOperandService.Setup(x => x.Get())
-                .Returns(operators);
-
-            var sut = new CalculateService(mockStackService.Object, mockOperandService.Object);
+            var sut = new CalculateService(mockStackService.Object);
 
             // Act
             var result = sut.Calculate(0, op);
